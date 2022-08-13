@@ -1,0 +1,67 @@
+*ddu-kind-extcmd.txt* external command kind for ddu.vim
+
+Version: 0.0.1
+Author: tennashi <tennashio@gmail.com>
+License: MIT
+
+==============================================================================
+CONTENTS                                            *ddu-kind-extcmd-contents*
+
+INTRODUCTION                                    |ddu-kind-extcmd-introduction|
+INSTALL                                         |ddu-kind-extcmd-install|
+EXAMPLES                                        |ddu-kind-extcmd-examples|
+PARAMS                                          |ddu-kind-extcmd-params|
+ACTIONS                                         |ddu-kind-extcmd-actions|
+
+==============================================================================
+INTRODUCTION                                    *ddu-kind-extcmd-introduction*
+
+This plugin is ddu.vim kind to execute external commands.
+
+==============================================================================
+INSTALL                                              *ddu-kind-extcmd-install*
+
+Please install all of the following plugins
+
+https://github.com/vim-denops/denops.vim
+https://github.com/Shougo/ddu.vim
+
+==============================================================================
+EXAMPLES                                            *ddu-kind-extcmd-examples*
+
+>
+	" Set default kind action.
+	call ddu#custom#patch_global({
+	\ 'kindParams': {
+	\   'extcmd': {
+	\     'runner': 'terminal',
+	\   },
+	\ },
+	\ 'kindOptions': {
+	\   'extcmd': {
+	\     'defaultAction': 'run',
+	\   },
+	\ },
+	\})
+<
+
+==============================================================================
+PARAMS                                                *ddu-kind-extcmd-params*
+
+                                                *ddu-kind-extcmd-param-runner*
+runner		(string)
+		Specify command runner
+
+		"deno": Running with Deno.run()
+		"terminal": Running with :terminal
+
+		Default: "deno"
+==============================================================================
+ACTIONS                                              *ddu-kind-extcmd-actions*
+
+                                                  *ddu-kind-extcmd-action-run*
+run
+		Run the external command.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:noet:
