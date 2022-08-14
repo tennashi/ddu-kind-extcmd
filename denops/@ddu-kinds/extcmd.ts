@@ -23,7 +23,7 @@ class TermRunner implements Runner {
   constructor(denops: Denops) {
     this.denops = denops
 
-    isVim = this.denops.meta.host == "vim"
+    this.isVim = this.denops.meta.host == "vim"
   }
 
   run(opt: {cmd: string[], cwd: string}) {
