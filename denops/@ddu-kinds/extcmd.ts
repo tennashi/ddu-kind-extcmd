@@ -4,6 +4,7 @@ import {
   BaseKind,
 } from "https://deno.land/x/ddu_vim@v1.8.8/types.ts";
 import * as vimfn from "https://deno.land/x/denops_std@v3.8.1/function/vim/mod.ts";
+import * as nvimfn from "https://deno.land/x/denops_std@v3.8.1/function/nvim/mod.ts";
 import { Denops } from "https://deno.land/x/denops_std@v3.8.1/mod.ts";
 
 export interface ActionData {
@@ -17,13 +18,23 @@ interface Runner {
 
 class TermRunner implements Runner {
   denops: Denops
+  isVim: boolean
 
   constructor(denops: Denops) {
     this.denops = denops
+
+    isVim = this.denops.meta.host == "vim"
   }
 
   run(opt: {cmd: string[], cwd: string}) {
-    vimfn.term_start(this.denops, opt.cmd, { cwd: opt.cwd })
+    switch (this.isVim) {
+      case false:
+        nvimfn.termopen(this.denops, opt.cmd, { cwd: opt.cwd })
+        break;
+      default:
+        vimfn.term_start(this.denops, opt.cmd, { cwd: opt.cwd })
+        break;
+    }
   }
 }
 
